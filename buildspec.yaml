@@ -1,16 +1,20 @@
 version: 0.2
 phases:
   install:
+    runtime-versions:
+      java: corretto17
+    commands: null
+  pre_build:
     commands:
-      - echo Installing dependencies...
-      - null
+      - echo "In the pre_build phase..."
   build:
     commands:
-      - echo Building the project...
-      - mvn install
+      - echo "Build started on `date`"
+      - mvn clean package
+      - echo "Build completed on `date`"
   post_build:
     commands:
-      - echo Build completed.
+      - echo "In the post_build phase..."
 artifacts:
   files:
     - target/*.jar
